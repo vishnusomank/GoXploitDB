@@ -27,7 +27,7 @@ func StartGit() {
 
 	s := gocron.NewScheduler(time.UTC)
 
-	s.Every("2m").Do(func() {
+	s.Every("120m").Do(func() {
 
 		services.Git_Operation(utils.GIT_DIR)
 
