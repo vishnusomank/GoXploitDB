@@ -3,7 +3,6 @@ package models
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"github.com/vishnusomank/sbom-poc/utils/constants"
 )
 
 var DB = constants.DB
