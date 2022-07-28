@@ -1,0 +1,8 @@
+# Server configurations
+server:
+  port: :8080
+  basepath: /goxploitdb
+
+# Application specific configurations
+application:
+  name: GoXploitDB
