@@ -18,7 +18,7 @@ const (
 
 //constants for URL Path
 const (
-	CVE = "cve"
+	CVE = "cve/:cve"
 )
 
 const (
@@ -26,4 +26,6 @@ const (
 	DELETE = "Delete"
 )
 
-var DB, POLICYDB, SBOMPOLICYDB, BINARYPATHDB *gorm.DB
+var XPLOITDB *gorm.DB
+
+var CURRENT_DIR, GIT_DIR string
