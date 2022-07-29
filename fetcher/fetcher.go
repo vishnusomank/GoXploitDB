@@ -119,7 +119,6 @@ func XploitDBCreate(edb_id, path string) {
 	}
 
 	if cveValue != "" {
-		fmt.Println(cveValue)
 
 		xploitdb := models.XploitDB{Title: titleValue, URL: "https://www.exploit-db.com/exploits/" + edb_id, CVE: strings.ToUpper(cveValue), Author: authorValue, Type: typeVal, Platform: platformVAl, EDBID: edb_id}
 		models.DB.Create(&xploitdb)
