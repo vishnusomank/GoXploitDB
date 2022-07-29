@@ -43,7 +43,7 @@ Run the microservice using
 ```sh
 docker run -d -p 8080:8080 knoxuser/goxploitdb
 ```
-
+> **Note:** Use `knoxuser/goxploitdb:stable` to avoid initial DB loading time 
 ## Features
 The server exposes 5 APIs 
 
