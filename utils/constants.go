@@ -18,7 +18,11 @@ const (
 
 //constants for URL Path
 const (
-	CVE = "cve/:cve"
+	CVE          = "cve/:cve"
+	TYPE         = "type/:type"
+	PLATFORM     = "platform/:platform"
+	All_PLATFORM = "platforms"
+	ALL_TYPE     = "types"
 )
 
 const (
