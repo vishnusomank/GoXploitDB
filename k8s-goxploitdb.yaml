@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goxploitdb
+  labels:
+    app: goxploitdb
+spec:
+  selector:
+    matchLabels:
+      app: goxploitdb
+  template:
+    metadata:
+      labels:
+        app: goxploitdb
+    spec:
+      containers:
+        - name: goxploitdb
+          image: knoxuser/goxploitdb:stable
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: goxploitdb-svc
+  name: goxploitdb-svc
+spec:
+  ports:
+    - name: "http"
+      port: 80
+      targetPort: 8080
+  selector:
+    app: goxploitdb
+  type: LoadBalancer
