@@ -44,6 +44,18 @@ Run the microservice using
 docker run -d -p 8080:8080 knoxuser/goxploitdb
 ```
 > **Note:** Use `knoxuser/goxploitdb:stable` to avoid initial DB loading time 
+
+## Run GoXploitDB on Kubernetes
+1. Using Local copy
+    ```sh
+    kubectl apply -f ./k8s-goxploitdb.yaml
+    ```
+2. Using Raw content from GitHub
+    ```sh
+    kubectl apply -f https://raw.githubusercontent.com/vishnusomank/GoXploitDB/main/k8s-goxploitdb.yaml
+    ```
+
+
 ## Features
 The server exposes 5 APIs 
 
