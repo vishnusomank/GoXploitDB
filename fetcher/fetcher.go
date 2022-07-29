@@ -25,6 +25,10 @@ func StartGit() {
 	}
 	utils.GIT_DIR = utils.CURRENT_DIR + "/exploitdb"
 
+	services.Git_Operation(utils.GIT_DIR)
+
+	iterate(utils.GIT_DIR + "/exploits")
+
 	s := gocron.NewScheduler(time.UTC)
 
 	s.Every("120m").Do(func() {
@@ -56,6 +60,11 @@ func iterate(path string) {
 
 func XploitDBCreate(edb_id, path string) {
 
+	pathSlice := strings.Split(path, "/")
+
+	typeVal := strings.ToUpper(pathSlice[len(pathSlice)-2])
+	platformVAl := strings.ToUpper(pathSlice[len(pathSlice)-3])
+
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -70,6 +79,8 @@ func XploitDBCreate(edb_id, path string) {
 
 			if len(slice1) > 1 {
 				titleValue = slice1[1]
+				titleValue = strings.Trim(titleValue, "#[]")
+				titleValue = strings.TrimSpace(titleValue)
 			}
 
 			for scanner.Scan() {
@@ -78,6 +89,8 @@ func XploitDBCreate(edb_id, path string) {
 
 					if len(slice2) > 1 {
 						authorValue = slice2[1]
+						authorValue = strings.Trim(authorValue, "#[]")
+						authorValue = strings.TrimSpace(authorValue)
 					}
 
 					for scanner.Scan() {
@@ -85,6 +98,16 @@ func XploitDBCreate(edb_id, path string) {
 							slice3 := strings.Split(scanner.Text(), ":")
 							if len(slice3) > 1 {
 								cveValue = slice3[1]
+								cveValue = strings.Trim(cveValue, "#[]")
+								cveValue = strings.TrimSpace(cveValue)
+
+								if !strings.Contains(cveValue, "CVE") {
+									cveValue = "CVE-" + cveValue
+
+								}
+								if strings.Contains(cveValue, "CVE-N/A") || strings.Contains(cveValue, "CVE-NA") || strings.Contains(cveValue, "CVE-n/a") || strings.Contains(cveValue, "CVE-na") {
+									cveValue = "N/A"
+								}
 							}
 
 							break
@@ -94,9 +117,11 @@ func XploitDBCreate(edb_id, path string) {
 			}
 		}
 	}
-	if cveValue != "" {
 
-		xploitdb := models.XploitDB{Title: titleValue, URL: "https://www.exploit-db.com/exploits/" + edb_id, CVE: strings.ToUpper(cveValue), Author: authorValue}
+	if cveValue != "" {
+		fmt.Println(cveValue)
+
+		xploitdb := models.XploitDB{Title: titleValue, URL: "https://www.exploit-db.com/exploits/" + edb_id, CVE: strings.ToUpper(cveValue), Author: authorValue, Type: typeVal, Platform: platformVAl, EDBID: edb_id}
 		models.DB.Create(&xploitdb)
 	}
 
