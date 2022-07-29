@@ -73,6 +73,11 @@ func SetupRoutes(r *gin.Engine) {
 		v1 := application.Group("/api/v1")
 		{
 			v1.GET(utils.CVE, services.SearchByCVE)
+			v1.GET(utils.PLATFORM, services.SearchByPlatform)
+			v1.GET(utils.TYPE, services.SearchByType)
+
+			v1.GET(utils.All_PLATFORM, services.ShowAllPlatform)
+			v1.GET(utils.ALL_TYPE, services.ShowAllType)
 
 		}
 	}
