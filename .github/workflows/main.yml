@@ -35,7 +35,7 @@ jobs:
             kubectl get po,svc
             sleep 120s
             kubectl get po -A
-            kubectl port-forward svc goxploitdb-svc 8080:80&
+            kubectl port-forward svc/goxploitdb-svc 8080:80&
             sudo apt install curl -y
             curl -s "http://localhost:8080/goxploitdb/api/v1/platforms" 
             curl -s "http://localhost:8080/goxploitdb/api/v1/types"
