@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: goxploitdb
-          image: knoxuser/goxploitdb:stable
+          image: knoxuser/goxploitdb
           ports:
             - containerPort: 8080
 ---
