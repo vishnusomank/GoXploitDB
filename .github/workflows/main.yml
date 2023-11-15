@@ -32,6 +32,11 @@ jobs:
         - name: Install GoXploit
           run: |
             kubectl apply -f ./k8s-goxploitdb.yaml
+            kubectl wait --for=jsonpath='{.status.phase}'=Running po -l app=goxploitdb
+            sleep 10s
+            curl -s "http://localhost:8080/goxploitdb/api/v1/platforms" 
+            curl -s "http://localhost:8080/goxploitdb/api/v1/types"
+            curl -s "http://localhost:8080/goxploitdb/api/v1/cve/CVE-2022-29548" 
  
         - name: Generate Report
           uses: accuknox/report-action@v0.1.2
