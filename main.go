@@ -37,6 +37,7 @@ func main() {
 	fmt.Printf("[%s][%s] Database configured\n", color.BlueString(time.Now().Format("01-02-2006 15:04:05")), color.GreenString("DONE"))
 	fmt.Printf("[%s][%s] Routes loaded\n", color.BlueString(time.Now().Format("01-02-2006 15:04:05")), color.GreenString("DONE"))
 	fmt.Printf("[%s][%s] Server started\n", color.BlueString(time.Now().Format("01-02-2006 15:04:05")), color.GreenString("DONE"))
+	fmt.Prinf("test\ntest2\n")
 	server.StartServer(r)
 
 }

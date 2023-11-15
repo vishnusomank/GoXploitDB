@@ -1,0 +1,35 @@
+{
+  "Clusters": {
+    "default": {
+      "ClusterName": "default",
+      "Namespaces": {
+        "default": {
+          "NamespaceName": "default",
+          "ResourceTypes": {
+            "Deployment": {
+              "ResourceType": "Deployment",
+              "Resources": {
+                "goxploitdb": {
+                  "ResourceType": "Deployment",
+                  "ResourceName": "goxploitdb",
+                  "MetaData": {
+                    "Label": "app=goxploitdb",
+                    "ContainerName": "goxploitdb"
+                  },
+                  "SummaryData": {
+                    "FileData": [
+                      {
+                        "Source": "/GoXploitDB/GoXploitDB",
+                        "Status": "Allow"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
