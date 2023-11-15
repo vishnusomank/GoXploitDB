@@ -33,7 +33,7 @@ jobs:
           run: |
             kubectl apply -f ./k8s-goxploitdb.yaml
             kubectl get po,svc
-            kubectl wait --for=jsonpath='{.status.phase}'=Running po -l app=goxploitdb --timeout=120s
+            sleep 120s
             kubectl get po -A
             sleep 10s
             sudo apt install curl -y
