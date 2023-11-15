@@ -32,7 +32,8 @@ jobs:
         - name: Install GoXploit
           run: |
             kubectl apply -f ./k8s-goxploitdb.yaml
-            kubectl wait --for=jsonpath='{.status.phase}'=Running po -l app=goxploitdb --timeout=600s
+            kubectl get po,svc
+            kubectl wait --for=jsonpath='{.status.phase}'=Running po -l app=goxploitdb --timeout=120s
             sleep 10s
             sudo apt install curl -y
             curl -s "http://localhost:8080/goxploitdb/api/v1/platforms" 
